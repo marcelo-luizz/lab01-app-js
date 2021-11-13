@@ -38,19 +38,19 @@ jobs:
             # - name: Run Jest
             #   run: npm run test:coverage
 
-            - name: Analyze with SonarCloud
-              id: sonarqube-scan
-              uses: sonarsource/sonarcloud-github-action@master
-              with:
-                projectBaseDir: my-custom-directory
-                args: >
-                  -Dsonar.organization=my-organization
-                  -Dsonar.projectKey=my-projectkey
-                  -Dsonar.javascript.coverage.reportPaths=coverage.xml
-                  -Dsonar.sources=lib/
-                  -Dsonar.test.exclusions=tests/**
-                  -Dsonar.tests=tests/
-                  -Dsonar.verbose=true
+            # - name: Analyze with SonarCloud
+            #   id: sonarqube-scan
+            #   uses: sonarsource/sonarcloud-github-action@master
+            #   with:
+            #     projectBaseDir: my-custom-directory
+            #     args: >
+            #       -Dsonar.organization=my-organization
+            #       -Dsonar.projectKey=my-projectkey
+            #       -Dsonar.javascript.coverage.reportPaths=coverage.xml
+            #       -Dsonar.sources=lib/
+            #       -Dsonar.test.exclusions=tests/**
+            #       -Dsonar.tests=tests/
+            #       -Dsonar.verbose=true
             
             - name: Slack Notification
               uses: act10ns/slack@v1
