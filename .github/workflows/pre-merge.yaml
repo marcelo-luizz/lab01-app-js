@@ -8,7 +8,7 @@ on:
 
 env:
   SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
-
+  SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
 jobs:
     build:
         runs-on: ubuntu-latest
