@@ -1,1 +1,59 @@
-teste
+name: Workflow pre-merge
+
+on:
+  push:
+  workflow_dispatch:
+    branches:
+      - main
+
+env:
+  SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Slack Notification
+              uses: act10ns/slack@v1
+              with:
+                  status: starting
+                  channel: "#workflows-notifications"
+              if: always()
+
+            - name: Checkout
+              id: checkout
+              uses: actions/checkout@v2
+
+            - name: NPM Install
+              id: npm-install
+              run: |
+                  npm install
+            
+            # - name: lint
+            #   id: lint
+            #   run: |
+            #       npm lint  
+
+            # - name: Run Jest
+            #   run: npm run test:coverage
+
+            # - name: Analyze with SonarCloud
+            #   uses: sonarsource/sonarcloud-github-action@master
+            #   with:
+            #     projectBaseDir: my-custom-directory
+            #     args: >
+            #       -Dsonar.organization=my-organization
+            #       -Dsonar.projectKey=my-projectkey
+            #       -Dsonar.javascript.coverage.reportPaths=coverage.xml
+            #       -Dsonar.sources=lib/
+            #       -Dsonar.test.exclusions=tests/**
+            #       -Dsonar.tests=tests/
+            #       -Dsonar.verbose=true
+
+            - uses: act10ns/slack@v1
+              with:
+                  status: ${{ job.status }}
+                  steps: ${{ toJson(steps) }}
+                  channel: "#workflows-notifications"
+              if: always()
