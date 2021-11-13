@@ -7,7 +7,7 @@ on:
       - main
 
 env:
-  SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
+  SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
   SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
 jobs:
     build:
