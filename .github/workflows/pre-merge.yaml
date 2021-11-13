@@ -39,6 +39,7 @@ jobs:
             #   run: npm run test:coverage
 
             - name: Analyze with SonarCloud
+              id: sonarqube-scan
               uses: sonarsource/sonarcloud-github-action@master
               with:
                 projectBaseDir: my-custom-directory
