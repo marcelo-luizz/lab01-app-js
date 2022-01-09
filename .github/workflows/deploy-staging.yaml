@@ -57,7 +57,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ steps.secrets.outpus.DOCKERHUB_USERNAME }}/nodeapp:latest
+        tags: ${{ steps.secrets.outputs.DOCKERHUB_USERNAME }}/nodeapp:latest
 
         
     #importar secrets do vault para consumir no workflow
