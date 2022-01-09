@@ -31,8 +31,8 @@ jobs:
         url: ${{ secrets.VAULT_URL }}
         token: ${{ secrets.VAULT_TOKEN }}
         secrets: |
-          secret/dockerhub/ username
-          secret/dockerhub/ token 
+          secret/dockerhub/username | DOCKERHUB_USERNAME
+          secret/dockerhub/token    | DOCKERHUB_TOKEN 
     - name: Set up QEMU
       id: seupt-qemu
       uses: docker/setup-qemu-action@v1
@@ -45,8 +45,8 @@ jobs:
       id: docker-login
       uses: docker/login-action@v1
       with:
-        username: ${{ steps.secrets.outputs.username }}
-        password: ${{ steps.secrets.outputs.token }}
+        username: ${{ steps.secrets.outputs.DOCKERHUB_USERNAME }}
+        password: ${{ steps.secrets.outputs.DOCKERHUB_TOKEN }}
      
     - name: Build and push
       id: docker-build-push
@@ -55,7 +55,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ steps.secrets.outpus.username }}/nodeapp:latest
+        tags: ${{ steps.secrets.outpus.DOCKERHUB_USERNAME }}/nodeapp:latest
 
         
     #importar secrets do vault para consumir no workflow
