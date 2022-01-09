@@ -33,7 +33,6 @@ jobs:
         secrets: |
           secret/dockerhub/username | DOCKERHUB_USERNAME ;
           secret/dockerhub/token | DOCKERHUB_TOKEN ;
-          secret/api/database/database_url | DATABASE_URL ;
   
     - name: Set up QEMU
       id: seupt-qemu
