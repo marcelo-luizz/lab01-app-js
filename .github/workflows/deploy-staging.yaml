@@ -31,8 +31,10 @@ jobs:
         url: ${{ secrets.VAULT_URL }}
         token: ${{ secrets.VAULT_TOKEN }}
         secrets: |
-          secret/dockerhub/username | DOCKERHUB_USERNAME
-          secret/dockerhub/token    | DOCKERHUB_TOKEN 
+          /secret/dockerhub username | DOCKERHUB_USERNAME;
+          /secret/dockerhub token    | DOCKERHUB_TOKEN;
+          
+          
     - name: Set up QEMU
       id: seupt-qemu
       uses: docker/setup-qemu-action@v1
